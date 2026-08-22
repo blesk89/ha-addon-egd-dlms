@@ -1,0 +1,24 @@
+configuration:
+  mqtt_host:
+    name: Adresa MQTT brokeru
+    description: Hostname nebo IP adresa MQTT brokeru (výchozí je vestavěný Mosquitto broker Home Assistanta).
+  mqtt_port:
+    name: Port MQTT brokeru
+    description: Port MQTT brokeru (výchozí 1883).
+  mqtt_username:
+    name: Uživatelské jméno MQTT
+    description: Uživatelské jméno pro přihlášení k MQTT brokeru.
+  mqtt_password:
+    name: Heslo MQTT
+    description: Heslo pro přihlášení k MQTT brokeru.
+  serial_device:
+    name: Sériové zařízení
+    description: Cesta k sériovému/USB-RS485 zařízení připojenému k HAN portu elektroměru.
+  baud_rate:
+    name: Přenosová rychlost
+    description: Přenosová rychlost sériové linky v baudech (elektroměry EG.D používají 9600).
+  frame_gap:
+    name: Mezera mezi rámci (s)
+    description: Doba ticha na lince (v sekundách), po které se přijatá data považují za kompletní rámec.
+network:
+  10001/tcp: Interní TCP most mezi sériovým portem a čtečkou DLMS (není potřeba měnit).

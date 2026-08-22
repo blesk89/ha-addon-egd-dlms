@@ -1,0 +1,24 @@
+configuration:
+  mqtt_host:
+    name: MQTT broker host
+    description: Hostname or IP address of the MQTT broker (defaults to Home Assistant's built-in Mosquitto broker).
+  mqtt_port:
+    name: MQTT broker port
+    description: MQTT broker port (default 1883).
+  mqtt_username:
+    name: MQTT username
+    description: Username used to authenticate with the MQTT broker.
+  mqtt_password:
+    name: MQTT password
+    description: Password used to authenticate with the MQTT broker.
+  serial_device:
+    name: Serial device
+    description: Path to the serial/USB-RS485 device connected to the meter's HAN port.
+  baud_rate:
+    name: Baud rate
+    description: Serial line baud rate (EG.D meters use 9600).
+  frame_gap:
+    name: Frame gap (s)
+    description: Seconds of line silence after which received data is treated as a complete frame.
+network:
+  10001/tcp: Internal TCP bridge between the serial port and the DLMS reader (no need to change).
