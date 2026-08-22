@@ -1,0 +1,32 @@
+name: "EGD DLMS Elektroměr"
+version: "1.0.0"
+slug: "egd_dlms"
+description: "DLMS/COSEM čtečka HAN výstupu elektroměru EG.D → MQTT (Home Assistant)"
+url: "https://github.com/blesk89/ha-addon-egd-dlms"
+arch:
+  - amd64
+  - aarch64
+  - armv7
+init: false
+startup: services
+boot: auto
+hassio_api: false
+homeassistant_api: false
+devices:
+  - "/dev/ttyUSB0:/dev/ttyUSB0:rwm"
+options:
+  mqtt_host: "core-mosquitto"
+  mqtt_port: 1883
+  mqtt_username: "homeassistant"
+  mqtt_password: ""
+  serial_device: "/dev/ttyUSB0"
+  baud_rate: 9600
+  frame_gap: 0.8
+schema:
+  mqtt_host: "str"
+  mqtt_port: "port"
+  mqtt_username: "str"
+  mqtt_password: "password"
+  serial_device: "str"
+  baud_rate: "int"
+  frame_gap: "float"
