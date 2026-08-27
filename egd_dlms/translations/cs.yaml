@@ -20,5 +20,8 @@ configuration:
   frame_gap:
     name: Mezera mezi rámci (s)
     description: Doba ticha na lince (v sekundách), po které se přijatá data považují za kompletní rámec.
+  recorder_enabled:
+    name: Nahrávat diagnostické rámce
+    description: Uloží poslední (a při zapnuté historii všechny) přijaté DLMS rámce do /data/samples pro diagnostiku parseru.
 network:
   10001/tcp: Interní TCP most mezi sériovým portem a čtečkou DLMS (není potřeba měnit).
