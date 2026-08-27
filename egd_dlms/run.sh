@@ -7,6 +7,7 @@ MQTT_PASSWORD=$(bashio::config 'mqtt_password')
 SERIAL_DEVICE=$(bashio::config 'serial_device')
 BAUD_RATE=$(bashio::config 'baud_rate')
 FRAME_GAP=$(bashio::config 'frame_gap')
+RECORDER_ENABLED=$(bashio::config 'recorder_enabled')
 
 bashio::log.info "Startuji socat most na ${SERIAL_DEVICE} (baud ${BAUD_RATE})..."
 socat TCP-LISTEN:10001,fork,reuseaddr "FILE:${SERIAL_DEVICE},raw,b${BAUD_RATE},cs8,parenb=0,cstopb=0" &
@@ -52,10 +53,10 @@ logging:
   level: INFO
 
 recorder:
-  enabled: false
+  enabled: ${RECORDER_ENABLED}
   directory: /data/samples
-  save_last: false
-  save_history: false
+  save_last: true
+  save_history: ${RECORDER_ENABLED}
 
 watchdog:
   enabled: true
