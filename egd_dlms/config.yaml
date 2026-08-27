@@ -1,5 +1,5 @@
 name: "EGD DLMS Elektroměr"
-version: "1.0.4"
+version: "1.0.5"
 slug: "egd_dlms"
 description: "DLMS/COSEM čtečka HAN výstupu elektroměru EG.D → MQTT (Home Assistant)"
 url: "https://github.com/blesk89/ha-addon-egd-dlms"
@@ -32,5 +32,6 @@ schema:
   baud_rate: "int"
   frame_gap: "float"
   recorder_enabled: "bool"
+
 
 
