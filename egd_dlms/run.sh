@@ -10,7 +10,21 @@ FRAME_GAP=$(bashio::config 'frame_gap')
 RECORDER_ENABLED=$(bashio::config 'recorder_enabled')
 
 bashio::log.info "Startuji socat most na ${SERIAL_DEVICE} (baud ${BAUD_RATE})..."
-socat TCP-LISTEN:10001,fork,reuseaddr "FILE:${SERIAL_DEVICE},raw,b${BAUD_RATE},cs8,parenb=0,cstopb=0" &
+# POZOR: záměrně BEZ 'fork'. 'fork' spouští nový podproces na každé nové
+# TCP spojení, ale při reconnectu egd-dlms (viz project_egd_dlms_power_field_bug.md
+# v Claude memory) se starý podproces nespolehlivě neukončoval — vznikly tak
+# DVA socat procesy současně čtoucí ze stejného /dev/ttyUSB0, které si mezi
+# sebe nedeterministicky trhaly bajty (=náhodně poškozená data, jindy jiné
+# pole). Místo fork běží socat v restart-smyčce: obslouží JEDNO spojení,
+# po odpojení klienta skončí, smyčka ho hned znovu nastartuje pro další
+# spojení — v každém okamžiku existuje nejvýš jeden proces se sériovým portem.
+(
+    while true; do
+        socat TCP-LISTEN:10001,reuseaddr "FILE:${SERIAL_DEVICE},raw,b${BAUD_RATE},cs8,parenb=0,cstopb=0"
+        bashio::log.warning "socat most skončil (klient se odpojil?), restartuji za 1s..."
+        sleep 1
+    done
+) &
 SOCAT_PID=$!
 
 # Dej socatu chvíli, ať otevře port, než na něj egd-dlms zkusí připojit.
@@ -71,3 +85,4 @@ EOF
 bashio::log.info "Startuji egd-dlms..."
 cd /opt/egd-dlms
 exec egd-dlms
+
