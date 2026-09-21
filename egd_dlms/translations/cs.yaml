@@ -23,5 +23,8 @@ configuration:
   recorder_enabled:
     name: Nahrávat diagnostické rámce
     description: Uloží poslední (a při zapnuté historii všechny) přijaté DLMS rámce do /data/samples pro diagnostiku parseru.
+  assume_no_export:
+    name: Bez FVE/baterie (zahodit nesmyslnou dodávku do sítě)
+    description: Zapni, pokud instalace nemá fotovoltaiku ani baterii a nemůže tedy reálně dodávat proud do sítě. Každé nenulové čtení "dodávka" polí (aktuální dodávka, dodávka L1/L2/L3) se pak zahodí jako podezření na poškozený rámec, místo aby zůstalo viset jako aktuální hodnota senzoru.
 network:
   10001/tcp: Interní TCP most mezi sériovým portem a čtečkou DLMS (není potřeba měnit).

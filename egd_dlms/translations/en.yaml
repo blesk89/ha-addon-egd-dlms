@@ -23,5 +23,8 @@ configuration:
   recorder_enabled:
     name: Record diagnostic frames
     description: Saves the last (and, with history enabled, all) received DLMS frames to /data/samples for parser diagnostics.
+  assume_no_export:
+    name: No PV/battery (discard bogus grid export readings)
+    description: Enable if the installation has no solar/battery and therefore cannot realistically export power to the grid. Any nonzero reading of the "export" fields (current export, export L1/L2/L3) is then discarded as a suspected corrupted frame instead of being left stuck as the sensor's current value.
 network:
   10001/tcp: Internal TCP bridge between the serial port and the DLMS reader (no need to change).
