@@ -11,7 +11,7 @@ RUN apk add --no-cache python3 py3-pip socat git
 # master větvi fork se nikdy nepropsala, i po zvýšení verze add-onu.
 # Při KAŽDÉ aktualizaci egd-dlms forku sem vlož nový commit hash, ať se
 # vynutí čerstvý git clone.
-ARG EGD_DLMS_REF=bbe8ded8
+ARG EGD_DLMS_REF=d4425fe
 RUN git clone --depth 1 --branch master https://github.com/blesk89/egd-dlms.git /opt/egd-dlms \
     && echo "egd-dlms pinned-ref: ${EGD_DLMS_REF}" \
     && pip install --break-system-packages --no-cache-dir -e /opt/egd-dlms

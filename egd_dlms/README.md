@@ -37,3 +37,4 @@ Dle dokumentace EG.D: ZPA-AM175, Meter & Control ST402D, Sagemcom XT211
 | `serial_device` | Cesta k sériovému zařízení | `/dev/ttyUSB0` |
 | `baud_rate` | Přenosová rychlost | `9600` |
 | `frame_gap` | Mezera ticha (s) považovaná za konec rámce | `0.8` |
+| `assume_no_export` | Instalace bez FVE/baterie nemůže reálně dodávat proud do sítě — zapni, aby se každé nenulové čtení "dodávka" polí zahodilo jako podezření na poškozený rámec (heuristický parser občas false-positive matchne vzor). Pokud FVE/baterii máš, nech vypnuté. | `false` |

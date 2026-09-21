@@ -8,6 +8,7 @@ SERIAL_DEVICE=$(bashio::config 'serial_device')
 BAUD_RATE=$(bashio::config 'baud_rate')
 FRAME_GAP=$(bashio::config 'frame_gap')
 RECORDER_ENABLED=$(bashio::config 'recorder_enabled')
+ASSUME_NO_EXPORT=$(bashio::config 'assume_no_export')
 
 bashio::log.info "Startuji socat most na ${SERIAL_DEVICE} (baud ${BAUD_RATE})..."
 # POZOR: záměrně BEZ 'fork'. 'fork' spouští nový podproces na každé nové
@@ -43,6 +44,7 @@ meter:
   port: 10001
   frame_gap: ${FRAME_GAP}
   reconnect_delay: 5
+  assume_no_export: ${ASSUME_NO_EXPORT}
 
 mqtt:
   host: ${MQTT_HOST}
